@@ -1,21 +1,14 @@
 import React, { Component } from "react";
+import LectureGoalList from "./components/LectureGoalList";
+
 import logo from "./logo.svg";
 import "./App.css";
 
 const goals = [
   "1. react 개발에 필요한 환경을 구축한다.",
-  "2. react 개발에 필요한 환경을 구축한다.",
+  "2. react 개발에 필요한 Javascript를 구축한다.",
   "3. react 개발에 필요한 IDE를 읽힌다."
 ];
-
-const LectureGoalList = props => {
-  return (
-    <div>
-      <div> {props.title} </div>
-      <ul>{props.items.map((item, idx) => <li key={idx}>{item}</li>)}</ul>
-    </div>
-  );
-};
 
 class App extends Component {
   render() {
