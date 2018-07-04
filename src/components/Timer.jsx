@@ -27,10 +27,13 @@ class Timer extends Component {
   render() {
     console.log("rener...");
 
-    const { expireDate } = this.props;
+    const { expireDate, onComplete } = this.props;
     const { date } = this.state;
 
     if (moment(expireDate) < date) {
+      setTimeout(() => {
+        onComplete && onComplete();
+      }, 1000);
       return <div> 종료되었습니다 </div>;
     }
     return (
@@ -41,6 +44,12 @@ class Timer extends Component {
       </div>
     );
   }
-}
 
+  componentWillUnmount() {
+    if (this.nTimer) {
+      clearInterval(this.nTimer);
+      this.nTimer = null;
+    }
+  }
+}
 export default Timer;
