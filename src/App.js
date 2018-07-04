@@ -12,7 +12,8 @@ const goals = [
 
 class App extends Component {
   handleClick(e) {
-    console.log(e.target);
+    //debugger;
+    console.log(e);
   }
 
   render() {
