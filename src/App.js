@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import LectureGoalList from "./components/LectureGoalList";
+import Todos from "./components/Todos";
 import Timer from "./components/Timer";
 import moment from "moment";
 
 import logo from "./logo.svg";
 import "./App.css";
+import "antd/dist/antd.css";
 
 const goals = [
-  "1. react 개발에 필요한 환경을 구축한다.",
-  "2. react 개발에 필요한 Javascript를 구축한다.",
-  "3. react 개발에 필요한 IDE를 읽힌다."
+  { title: "1. react 개발에 필요한 환경을 구축한다.", completed: true },
+  { title: "2. react 개발에 필요한 Javascript를 구축한다.", completed: true },
+  { title: "3. react 개발에 필요한 IDE를 읽힌다.", completed: true },
+  { title: "4. react 개발에 필요한 IDE를 읽힌다.", completed: false }
 ];
 
 class App extends Component {
@@ -22,10 +24,10 @@ class App extends Component {
     console.log(e);
   }
 
-  handleComplete() {
+  handleComplete = () => {
     this.setState({ isExpired: true });
     console.log("타이머로부터 호출 받음");
-  }
+  };
 
   render() {
     //const isExpired = moment("2018-07-04T16:14:00+09:00") < moment();
@@ -46,10 +48,10 @@ class App extends Component {
           To , edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <LectureGoalList items={goals} title={"강의목표!!!"} />
+        <Todos items={goals} title={"강의목표!!!"} />
         {!isExpired && (
           <Timer
-            expireDate={"2018-07-04T16:20:00+09:00"}
+            expireDate={"2018-07-04T16:24:00+09:00"}
             onComplete={this.handleComplete}
           />
         )}
