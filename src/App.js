@@ -11,11 +11,20 @@ const goals = [
 ];
 
 class App extends Component {
+  handleClick(e) {
+    console.log(e.target);
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img
+            onClick={this.handleClick}
+            src={logo}
+            className="App-logo"
+            alt="logo"
+          />
           <h1 className="App-title">hello to React</h1>
         </header>
         <p className="App-intro">
