@@ -6,18 +6,21 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cssName: "App-logo rotate"
+      cssName: "App-logo rotate",
+      Str: ""
     };
   }
   handleClick = () => {
     if (this.state.cssName == "App-logo") {
       this.setState({
-        cssName: "App-logo rotate"
+        cssName: "App-logo rotate",
+        Str: "Rotate"
       });
     }
     if (this.state.cssName == "App-logo rotate") {
       this.setState({
-        cssName: "App-logo"
+        cssName: "App-logo",
+        Str: "Stop"
       });
     }
   };
@@ -30,7 +33,7 @@ class Header extends Component {
           src={logo}
           alt="logo"
         />
-        <h1 className="App-title">hello to React</h1>
+        <h1 className="App-title">{this.state.Str}</h1>
       </header>
     );
   }
