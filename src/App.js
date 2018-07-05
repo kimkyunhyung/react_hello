@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Todos from "./components/Todos";
 import Timer from "./components/Timer";
-import moment from "moment";
 import Header from "./components/Header";
 
 import logo from "./logo.svg";
+import moment from "moment";
+
 import "./App.css";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 
 const goals = [
   { title: "1. react 개발에 필요한 환경을 구축한다.", completed: true },
@@ -65,7 +66,7 @@ class App extends Component {
           To , edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Timer items={goals} title={"강의목표!!!"} />
+        <Todos items={goals} title={"강의목표!!!"} />
         {!isExpired && (
           <Timer
             key={this.state.dateStr}
