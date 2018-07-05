@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Todos from "./components/Todos";
 import Timer from "./components/Timer";
 import moment from "moment";
+import Header from "./components/Header";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -16,9 +17,14 @@ const goals = [
 
 class App extends Component {
   state = {
-    isExpired: false
+    isExpired: false,
+    dateStr: "2018-07-05T17:00:00+09:00"
   };
 
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
   handleClick(e) {
     //debugger;
     console.log(e);
@@ -29,30 +35,43 @@ class App extends Component {
     console.log("타이머로부터 호출 받음");
   };
 
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        dateStr: "2018-07-05T16:00:00+09:00"
+      });
+    }, 5000);
+  }
   render() {
-    //const isExpired = moment("2018-07-04T16:14:00+09:00") < moment();
+    console.log("부모랜더");
+    //const isExpired = moment("2018-07-04T16:00:00+09:00") < moment();
     const { isExpired } = this.state;
 
     return (
       <div className="App">
-        <header className="App-header">
+        <Header />
+        {/*       <header className="App-header">
           <img
             onClick={this.handleClick}
             src={logo}
-            className="App-logo"
+            className="App-logo rotate"
             alt="logo"
           />
           <h1 className="App-title">hello to React</h1>
         </header>
+    */}
+
         <p className="App-intro">
           To , edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Todos items={goals} title={"강의목표!!!"} />
+        <Timer items={goals} title={"강의목표!!!"} />
         {!isExpired && (
           <Timer
-            expireDate={"2018-07-04T16:24:00+09:00"}
-            onComplete={this.handleComplete}
+            key={this.state.dateStr}
+            expireDate={this.state.dateStr}
+            //onComplete={this.handleComplete}
+            onComplete={this.handleClick}
           />
         )}
       </div>

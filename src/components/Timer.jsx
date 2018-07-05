@@ -1,13 +1,14 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import moment from "moment";
 import "moment/locale/ko";
 const TIME_FORMAT = "A h:mm";
 
-class Timer extends Component {
+class Timer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      date: moment()
+      date: moment(),
+      expireDate: props.expireDate
     };
     this.nTimer = setInterval(() => {
       this.setState({
@@ -25,16 +26,17 @@ class Timer extends Component {
   }
 
   render() {
-    console.log("rener...");
+    console.log("자식 rener...");
 
-    const { expireDate, onComplete } = this.props;
-    const { date } = this.state;
+    const { onComplete } = this.props;
+    const { expireDate, date } = this.state;
 
     if (moment(expireDate) < date) {
-      setTimeout(() => {
+      /*       setTimeout(() => {
         onComplete && onComplete();
       }, 1000);
       return <div> 종료되었습니다 </div>;
+ */
     }
     return (
       <div>
